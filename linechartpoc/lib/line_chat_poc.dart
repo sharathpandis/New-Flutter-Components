@@ -4,10 +4,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class PricePoint {
+class MarkPoints {
   double x;
   double y;
-  PricePoint({required this.x, required this.y});
+  MarkPoints({
+    required this.x,
+    required this.y,
+  });
 }
 
 class LineChartPoc extends StatefulWidget {
@@ -17,12 +20,12 @@ class LineChartPoc extends StatefulWidget {
   State<LineChartPoc> createState() => _LineChartPocState();
 }
 
-final List<PricePoint> points = [
-  PricePoint(x: 1, y: 1),
-  PricePoint(x: 2, y: 4),
-  PricePoint(x: 6.8, y: 3.1),
-  PricePoint(x: 8, y: 4),
-  PricePoint(x: 9.5, y: 3),
+final List<MarkPoints> points = [
+  MarkPoints(x: 1, y: 1),
+  MarkPoints(x: 2, y: 4),
+  MarkPoints(x: 6.8, y: 3.1),
+  MarkPoints(x: 8, y: 4),
+  MarkPoints(x: 9.5, y: 3),
 ];
 List<Color> gradientColors = [
   Colors.green,
@@ -48,7 +51,7 @@ class _LineChartPocState extends State<LineChartPoc> {
       spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
       isCurved: true,
       dotData: FlDotData(
-        show: true,
+        show: false,
       ),
       color: Color.fromARGB(255, 10, 147, 112),
       gradient: LinearGradient(
@@ -120,7 +123,7 @@ class _LineChartPocState extends State<LineChartPoc> {
           break;
         case 4:
           text = CustomButton(
-              buttonStatus: _selected,
+              buttonStatus: false,
               buttonTitle: "Jan",
               ontap: () {
                 setState(() {
@@ -130,7 +133,7 @@ class _LineChartPocState extends State<LineChartPoc> {
           break;
         case 6:
           text = CustomButton(
-              buttonStatus: _selected,
+              buttonStatus: false,
               buttonTitle: "Jan",
               ontap: () {
                 setState(() {
@@ -141,7 +144,7 @@ class _LineChartPocState extends State<LineChartPoc> {
           break;
         case 8:
           text = CustomButton(
-              buttonStatus: _selected,
+              buttonStatus: false,
               buttonTitle: "Jan",
               ontap: () {
                 setState(() {
@@ -151,7 +154,7 @@ class _LineChartPocState extends State<LineChartPoc> {
           break;
         case 10:
           text = CustomButton(
-              buttonStatus: _selected,
+              buttonStatus: false,
               buttonTitle: "Jan",
               ontap: () {
                 setState(() {
@@ -257,9 +260,7 @@ class _LineChartPocState extends State<LineChartPoc> {
                 color: Colors.green,
                 dashArray: [5, 10],
               ),
-              FlDotData(
-                show: true,
-              ),
+              FlDotData(),
             );
           }).toList();
           return _indicator;
